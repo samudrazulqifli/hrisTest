@@ -1,4 +1,4 @@
-# MDI - Green Box - Web
+# Kotakodelab Full-Stack / Frontend homework (TypeScript, REST API)
 
 ## Requirements
 
@@ -20,9 +20,6 @@ cp .env.example .env
 | `APP_BUILD_SIGNATURE`    | App Build Signature               |          | `string` |
 |                          |                                   |          |          |
 | `API_BASE_URL`           | API Base URL                      | **✓**    | `string` |
-| `API_CLIENT_ID`          | API Credential Client ID          | **✓**    | `string` |
-| `API_CLIENT_SECRET`      | API Credential Client Secret      | **✓**    | `string` |
-| `API_PLATFORM_ID`        | API Platform ID                   | **✓**    | `number` |
 |                          |                                   |          |          |
 | `MOCK_API_BASE_URL`      | Mock API Base URL                 |          | `string` |
 | `MOCK_API_CLIENT_ID`     | Mock API Credential Client ID     |          | `string` |
@@ -50,8 +47,11 @@ yarn install --frozen-lockfile
   ```
 - Check `package.json` to see more script.
 
-## Contributors
-
-- Abram Fernando Haullussy <ahaullussy@nusantarabetastudio.com>
-- Jodi Setiawan <jodi@nusantarabetastudio.com>
-- Muhammad Manshur <manshur@nusantarabetastudio.com>
+## Requirements Checklist
+- [x] Staff should be able to login
+- [ ] Staff should be able to logout
+- [ ] Staff should be able to see another staff
+- [ ] Staff should be able to update the staff data
+- [ ] Staff should not be able to update another staff data
+- [ ] Staff should be able to clock in
+- [ ] Staff should be able to clock out

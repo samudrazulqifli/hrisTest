@@ -1,4 +1,4 @@
-# Full-Stack / Backend homework (TypeScript, REST API)
+# Kotakodelab Full-Stack / Backend homework (TypeScript, REST API)
 
 Welcome to the Kotakodelab work sample for Full-Stack developers (TypeScript & NestJS)! This is our way to get some experience working with you and to gauge your skill in using TypeScript and the databases. There is no official time-limit for this exercise, but you should finish it within a week. We encourqage you to take the time you need in order to **provide quality work that best reflects your skills**
 
@@ -8,9 +8,9 @@ We have implemented basic backend service written in TypeScript also implemented
 
 ## Data Models & Relationships
 
-The `Staffs` has fields: `id`, `staffId`, `firstName`, `lastName`, `email`, `passwordHash`
+The `Staffs` has fields: `id`, `staffId`, `username`, `firstName`, `lastName`, `email`, `passwordHash`
 
-we still don't have Model for the `attendance` so here is your task to add the model for the **Attendance**, it's up to you to name the Model but please give a name that fits. and also please add the relation between `Staffs` and the **Attendance**
+we still don't have Model for the `Attendance` so here is your task to add the model for the **Attendance**, it's up to you to name the Model but please give a name that fits. and also please add the relation between `Staffs` and the **Attendance**
 
 ## Technical Requirements
 
@@ -36,3 +36,13 @@ think it's important to use them! Please provide your best practices in the ques
 Kotakodelab team members have worked through this work sample to make sure we are not asking for too much of your time.
 This shouldn't take you longer than a couple of hours depending on your knowledge and the bells and whistles you want
 to add. We are looking forward to hearing from you!
+
+## Requirements Checklist
+
+- [x] Should be able to create Staff
+- [x] Should be able to update Staff
+- [x] Staff should be able to login
+- [x] Staff should be able to logout
+- [ ] Staff should not be able to update another staff dat
+- [ ] Staff should be able to clock in
+- [ ] Staff should be able to clock out

@@ -47,15 +47,15 @@ const ExampleList: FC = () => {
                 />
               ))}
 
-            {staffs?.data?.map((staff: Staff, index: number) => (
+            {staffs?.data?.map(({ attributes }, index: number) => (
               <div
                 key={index}
                 className='group relative'
               >
-                <div className='min-h-80 aspect-w-1 aspect-h-1 lg:aspect-none w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:h-80'>
+                <div className='min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80'>
                   <img
-                    src={`https://ui-avatars.com/api/?name=${staff.attributes.firstName}+${staff.attributes.lastName}&background=0D8ABC&color=fff`}
-                    alt={staff.attributes.firstName}
+                    src={`https://ui-avatars.com/api/?name=${attributes.firstName}+${attributes.lastName}&background=0D8ABC&color=fff`}
+                    alt={attributes.fullName}
                     className='h-full w-full object-cover object-center lg:h-full lg:w-full'
                     loading='lazy'
                   />
@@ -63,13 +63,13 @@ const ExampleList: FC = () => {
 
                 <div className='mt-4'>
                   <h3 className='text-sm text-gray-700'>
-                    <Link href={{ pathname: `/examples/${staff.attributes.id}`, query: { lang: router.query.lang } }}>
+                    <Link href={{ pathname: `/examples/${attributes.id}`, query: { lang: router.query.lang } }}>
                       <a>
                         <span
                           aria-hidden='true'
                           className='absolute inset-0'
                         />
-                        {staff.attributes.firstName} {staff.attributes.lastName}
+                        {attributes.firstName} {attributes.lastName}
                       </a>
                     </Link>
                   </h3>

@@ -11,6 +11,7 @@ export const apiBaseQuery = fetchBaseQuery({
   prepareHeaders: (headers) => {
     const appAccessToken = getCookie(APP_ACCESS_TOKEN)
     const userAccessToken = getCookie(USER_ACCESS_TOKEN)
+    console.log(userAccessToken)
 
     if (userAccessToken) {
       headers.set('Authorization', `Bearer ${userAccessToken}`)

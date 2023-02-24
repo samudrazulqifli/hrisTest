@@ -10,6 +10,7 @@ import '@/styles/theme.css'
 import Loading from '@/components/Loading'
 import i18n from '@/config/i18n'
 import { wrapper } from '@/store'
+import CheckingUserToken from '@/layouts/CheckingUserToken'
 
 const MyApp: React.FC<AppProps> = (props) => {
   const { Component, pageProps } = props
@@ -62,7 +63,9 @@ const MyApp: React.FC<AppProps> = (props) => {
         isRouteChanging={progress.isRouteChanging}
       />
 
-      <Component {...pageProps} />
+      <CheckingUserToken>
+        <Component {...pageProps} />
+      </CheckingUserToken>
     </I18nextProvider>
   )
 }

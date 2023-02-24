@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { SharedModule } from './shared/shared.module';
 import { DatabaseConfigService } from './shared/config/database.service';
 import { StaffModule } from './modules/staff/staff.module';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { StaffModule } from './modules/staff/staff.module';
       inject: [DatabaseConfigService],
     }),
     StaffModule,
+    AuthModule,
   ],
 })
 export class AppModule {}

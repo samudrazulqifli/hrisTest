@@ -19,3 +19,15 @@ export const StaffAlreadyExistsError = () => {
     'There already exists an staff with this email',
   );
 };
+
+/**
+ * Auth-Related Errors
+ */
+
+export const WrongPasswordError = () => {
+  throw new ApiError(
+    HttpStatus.UNAUTHORIZED,
+    'Wrong password',
+    'The password you provided is incorrect',
+  );
+};

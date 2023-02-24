@@ -5,6 +5,12 @@ import { Staff } from '../entities/staff.entity';
 
 export class StaffDto extends Resource {
   @IsString()
+  username: string;
+
+  @IsString()
+  staffId: string;
+
+  @IsString()
   firstName: string;
 
   @IsString()
@@ -18,6 +24,9 @@ export class StaffDto extends Resource {
 
   @Exclude()
   passwordHash: string;
+
+  @Exclude()
+  accessToken: string;
 
   constructor(partial: Partial<Staff>) {
     super();

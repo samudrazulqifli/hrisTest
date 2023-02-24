@@ -24,6 +24,7 @@ export class StaffService {
     staff.lastName = options.lastName;
     staff.email = options.email;
     staff.passwordHash = options.password;
+    staff.username = options.username;
     await staff.save();
 
     const createdStaff = await Staff.findOne({
@@ -73,6 +74,10 @@ export class StaffService {
     if (options.email && options.email !== staff.email) {
       await this.checkDuplicateEmail({ email: options.email });
       staff.email = options.email;
+    }
+
+    if (options.username && options.username !== staff.username) {
+      staff.username = options.username;
     }
 
     if (options.password)

@@ -12,6 +12,7 @@ import { jsonApiBodyValidatorAndFormatter } from './helpers/json-body-validator.
 import { DatabaseConfigService } from './shared/config/database.service';
 import { SharedModule } from './shared/shared.module';
 import { TransformResponseInterceptor } from './interceptors/transform-response.interceptor';
+import { JwtAuthGuard } from './modules/auth/auth.guard';
 
 async function bootstrap(): Promise<NestExpressApplication> {
   const app = await NestFactory.create<NestExpressApplication>(
@@ -34,6 +35,7 @@ async function bootstrap(): Promise<NestExpressApplication> {
     jsonApiBodyValidatorAndFormatter,
   );
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
+  app.useGlobalGuards(new JwtAuthGuard(app.get(Reflector)));
   app.useGlobalInterceptors(
     new TransformResponseInterceptor(app.get(Reflector)),
   );

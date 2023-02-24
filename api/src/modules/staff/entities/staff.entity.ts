@@ -21,6 +21,13 @@ export class Staff extends BaseEntityWithUUID {
   @Column()
   passwordHash: string;
 
+  @Exclude()
+  @Column({ nullable: true })
+  accessToken: string;
+
+  @Column({ unique: true })
+  username: string;
+
   @BeforeInsert()
   async hashUserPassword() {
     if (this.passwordHash) {

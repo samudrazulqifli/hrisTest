@@ -12,6 +12,10 @@ export class CreateStaffDto {
 
   @ApiProperty()
   @IsString()
+  username: string;
+
+  @ApiProperty()
+  @IsString()
   lastName: string;
 
   @ApiProperty()

@@ -90,6 +90,7 @@ export class AuthService {
       id: self.id,
     });
 
+
     if (!user) {
       NoStaffFoundError();
     }

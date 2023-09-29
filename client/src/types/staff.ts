@@ -1,4 +1,5 @@
-import { BaseResponse, Meta } from '@/types/common'
+import { BaseRequest, BaseResponse, Meta } from '@/types/common'
+import { type } from 'os'
 
 // same with the attribute on responses
 export interface Staff {
@@ -10,12 +11,14 @@ export interface Staff {
   fullName: string
   email: string
   password: string
+  status: string
 }
 
 export type StaffBrowseRequest = {
   page: number
   pageSize: number
 }
+
 
 export type StaffBrowseResponse = BaseResponse<Staff>
 export type StaffDetailResponse = BaseResponse<Staff>

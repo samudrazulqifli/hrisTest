@@ -13,6 +13,7 @@ import { DatabaseConfigService } from './shared/config/database.service';
 import { SharedModule } from './shared/shared.module';
 import { TransformResponseInterceptor } from './interceptors/transform-response.interceptor';
 import { JwtAuthGuard } from './modules/auth/auth.guard';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap(): Promise<NestExpressApplication> {
   const app = await NestFactory.create<NestExpressApplication>(
@@ -35,7 +36,7 @@ async function bootstrap(): Promise<NestExpressApplication> {
     jsonApiBodyValidatorAndFormatter,
   );
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
-  app.useGlobalGuards(new JwtAuthGuard(app.get(Reflector)));
+  // app.useGlobalGuards(new JwtAuthGuard(app.get(Reflector)));
   app.useGlobalInterceptors(
     new TransformResponseInterceptor(app.get(Reflector)),
   );
@@ -43,6 +44,14 @@ async function bootstrap(): Promise<NestExpressApplication> {
   if (!configService.isDevelopment) {
     app.enableShutdownHooks();
   }
+
+  const config = new DocumentBuilder()
+    .setTitle('School Management')
+    .setDescription('The description')
+    .setVersion('1.0')
+    .build();
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('/', app, document);
   const port = configService.appConfig.port;
   await app.listen(port);
 

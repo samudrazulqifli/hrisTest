@@ -7,11 +7,13 @@ import {
   Query,
   ValidationPipe,
   Put,
+  Delete,
 } from '@nestjs/common';
 import { StaffService } from './staff.service';
 import { CreateStaffDto } from './dto/create-staff.dto';
 import { UpdateStaffDto } from './dto/update-staff.dto';
 import { GetStaffDto } from './dto/get-staff.dto';
+import { ClockInOutDto } from './dto/clock-in-out.dto';
 
 @Controller({ version: '1', path: 'staffs' })
 export class StaffController {
@@ -40,5 +42,11 @@ export class StaffController {
   async update(@Param('id') id: string, @Body() options: UpdateStaffDto) {
     const admin = await this.staffService.update(id, options);
     return { data: admin };
+  }
+
+  @Get('attendance/toggle/:id')
+  async updateAttendance(@Param('id') id: string) {
+    const admin = await this.staffService.updateAttendance(id);
+    return { data: admin.attendance };
   }
 }

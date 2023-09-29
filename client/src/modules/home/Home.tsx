@@ -28,6 +28,8 @@ const Home: React.FC = () => {
               <a className='mt-6 py-2 px-4 text-sm font-medium underline'>{t('home:example')}</a>
             </Link>
           </div>
+          <div className='flex flex-row justify-center'>
+          </div>
         </section>
       </main>
     </Blank>

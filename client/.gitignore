@@ -51,3 +51,5 @@ firebase-debug.log
 !.idea/i18nSettings.xml
 !.idea/prettier.xml
 !.idea/vcs.xml
+
+package-lock.json

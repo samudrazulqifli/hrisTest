@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next'
 import Language from '@/components/Language'
 import Blank from '@/layouts/Blank'
 import { useGetDetailStaffQuery } from '@/services/staffs'
+import ClockinAndOut from '@/components/ClockinAndOut'
 
 const ExampleDetail: FC = () => {
   const router = useRouter()
@@ -13,13 +14,14 @@ const ExampleDetail: FC = () => {
 
   const { data } = useGetDetailStaffQuery(String(router.query.id))
 
-
   return (
     <Blank title={data?.data?.[0]?.attributes?.firstName || 'Loading...'}>
       <main className='min-h-screen bg-gray-100'>
         <section className='mx-auto min-h-screen max-w-screen-sm bg-white py-10'>
           <div className='flex flex-row items-center justify-between px-6 text-center'>
-            <h1 className='font-primary text-2xl font-bold md:text-4xl'>{data?.data?.[0]?.attributes?.firstName || 'Loading...'}</h1>
+            <h1 className='font-primary text-2xl font-bold md:text-4xl'>
+              {data?.data?.[0]?.attributes?.firstName || 'Loading...'}
+            </h1>
 
             <Language />
           </div>
@@ -34,7 +36,7 @@ const ExampleDetail: FC = () => {
 
           <div className='mx-3 mt-6 grid w-full place-items-center'>
             <div className='group relative'>
-              <div className='aspect-w-1 aspect-h-1 lg:aspect-none h-80 w-80 overflow-hidden rounded-md bg-gray-200 lg:h-80'>
+              <div className='aspect-w-1 aspect-h-1 h-80 w-80 overflow-hidden rounded-md bg-gray-200 lg:aspect-none lg:h-80'>
                 <img
                   src={`https://ui-avatars.com/api/?name=${data?.data?.[0].attributes?.firstName}+${data?.data?.[0].attributes?.lastName}&background=0D8ABC&color=fff`}
                   alt={data?.data?.[0]?.attributes?.firstName}
@@ -46,6 +48,9 @@ const ExampleDetail: FC = () => {
               <div className='mt-4 text-center'>
                 <h3 className='text-sm text-gray-700'>{data?.data?.[0]?.attributes?.fullName || 'Loading...'}</h3>
               </div>
+            </div>
+            <div className='flex flex-row justify-center'>
+              <ClockinAndOut></ClockinAndOut>
             </div>
           </div>
         </section>

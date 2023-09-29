@@ -1,12 +1,13 @@
-import { BeforeInsert, Column, Entity } from 'typeorm';
+import { BeforeInsert, Column, Entity, JoinColumn, OneToOne } from 'typeorm';
 import { BaseEntityWithUUID } from '../../../common/base.entity';
 import { hashPassword } from '../../../helpers/password.helpers';
 import { Exclude } from 'class-transformer';
+import { Attendance } from './attendance.entity';
 
 @Entity()
 export class Staff extends BaseEntityWithUUID {
   @Column()
-  staffId: string;
+  staffId: string
 
   @Column()
   firstName: string;
@@ -28,10 +29,15 @@ export class Staff extends BaseEntityWithUUID {
   @Column({ unique: true })
   username: string;
 
+
   @BeforeInsert()
   async hashUserPassword() {
     if (this.passwordHash) {
       this.passwordHash = await hashPassword(this.passwordHash);
     }
   }
+
+  @OneToOne(() => Attendance, attendance => attendance.staff)
+  @JoinColumn()
+  attendance: Attendance;
 }

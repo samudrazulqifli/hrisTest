@@ -11,6 +11,9 @@ import {
 import { GetStaffDto } from './dto/get-staff.dto';
 import { PageMetaDto } from '../../common/dto/page-meta.dto';
 import { hashPassword } from '../../helpers/password.helpers';
+// import { Attendance } from './entities/attendance.entity';
+import { ClockInOutDto } from './dto/clock-in-out.dto';
+import { Attendance } from './entities/attendance.entity';
 
 @Injectable()
 export class StaffService {
@@ -19,16 +22,22 @@ export class StaffService {
       email: options.email,
     });
     const staff = new Staff();
+    const attendance = new Attendance();
     staff.staffId = options.staffId;
     staff.firstName = options.firstName;
     staff.lastName = options.lastName;
     staff.email = options.email;
     staff.passwordHash = options.password;
     staff.username = options.username;
+    attendance.status = 'false';
+    staff.attendance = attendance;
+    attendance.staff = staff;
+    await attendance.save();
     await staff.save();
 
     const createdStaff = await Staff.findOne({
       where: { id: staff.id },
+      relations: ['attendance'],
     });
     return createdStaff;
   }
@@ -57,6 +66,7 @@ export class StaffService {
   async findOne(options: { id: string }): Promise<StaffDto> {
     const staff = await Staff.findOne({
       where: { id: options.id },
+      relations: ['attendance'],
     });
     if (!staff) NoStaffFoundError();
     const staffDto = new StaffDto(staff);
@@ -104,5 +114,27 @@ export class StaffService {
     const staff = await Staff.findOne(findOpts);
     if (staff) StaffAlreadyExistsError();
     return true;
+  }
+
+  async updateAttendance(id: string): Promise<Staff> {
+    const staff = await Staff.findOne({
+      where: { id },
+      relations: ['attendance'],
+    });
+    if (!staff) NoStaffFoundError();
+    const reqIdFromStaff = staff.attendance.id;
+    const attendance = await Attendance.findOne({
+      where: { id: reqIdFromStaff },
+    });
+    if (attendance)
+      attendance.status === 'false'
+        ? (attendance.status = 'true')
+        : (attendance.status = 'false');
+    await attendance.save();
+    const updatedAttendance = await Staff.findOne({
+      where: { id: staff.id },
+      relations: ['attendance'],
+    });
+    return updatedAttendance;
   }
 }
